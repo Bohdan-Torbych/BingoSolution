@@ -12,8 +12,16 @@ using BingoAPI.Core.Dtos;
 
 namespace BingoAPI.StartupExtentions;
 
+/// <summary>
+/// Extension methods for configuring services in the application.
+/// </summary>
 public static class ServicesExtention
 {
+    /// <summary>
+    /// Configures services required by the application.
+    /// </summary>
+    /// <param name="services">The service collection to configure.</param>
+    /// <param name="configuration">The configuration data.</param>
     public static void ConfigureServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddControllers();
@@ -47,3 +55,4 @@ public static class ServicesExtention
         });
     }
 }
+

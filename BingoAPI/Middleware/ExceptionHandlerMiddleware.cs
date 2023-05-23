@@ -6,12 +6,21 @@ using System.Threading.Tasks;
 
 namespace BingoAPI.Middleware;
 
+/// <summary>
+/// Middleware for handling exceptions and returning appropriate error responses.
+/// </summary>
 public class ExceptionHandlerMiddleware
 {
     private readonly RequestDelegate _next;
     private readonly IHostEnvironment _host;
     private readonly ILogger<ExceptionHandlerMiddleware> _logger;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="ExceptionHandlerMiddleware"/> class.
+    /// </summary>
+    /// <param name="next">The next request delegate in the pipeline.</param>
+    /// <param name="logger">The logger for logging exceptions.</param>
+    /// <param name="host">The hosting environment.</param>
     public ExceptionHandlerMiddleware(RequestDelegate next, ILogger<ExceptionHandlerMiddleware> logger, IHostEnvironment host)
     {
         _next = next;
@@ -19,6 +28,11 @@ public class ExceptionHandlerMiddleware
         _logger = logger;
     }
 
+    /// <summary>
+    /// Invokes the middleware to handle exceptions and return appropriate error responses.
+    /// </summary>
+    /// <param name="httpContext">The HTTP context.</param>
+    /// <returns>A task representing the asynchronous operation.</returns>
     public async Task InvokeAsync(HttpContext httpContext)
     {
         try
@@ -40,10 +54,19 @@ public class ExceptionHandlerMiddleware
     }
 }
 
+/// <summary>
+/// Extension methods for registering the <see cref="ExceptionHandlerMiddleware"/> in the application pipeline.
+/// </summary>
 public static class ExceptionHandlerMiddlewareExtensions
 {
+    /// <summary>
+    /// Adds the <see cref="ExceptionHandlerMiddleware"/> to the application pipeline.
+    /// </summary>
+    /// <param name="builder">The application builder.</param>
+    /// <returns>The updated application builder.</returns>
     public static IApplicationBuilder UseExceptionHandlerMiddleware(this IApplicationBuilder builder)
     {
         return builder.UseMiddleware<ExceptionHandlerMiddleware>();
     }
 }
+

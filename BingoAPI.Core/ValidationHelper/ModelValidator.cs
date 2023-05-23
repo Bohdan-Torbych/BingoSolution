@@ -1,8 +1,18 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace BingoAPI.Core.ValidationHelper;
+
+/// <summary>
+/// Represents a model validator utility class.
+/// </summary>
 internal static class ModelValidator
 {
+    /// <summary>
+    /// Validates the specified model object.
+    /// </summary>
+    /// <param name="model">The model object to validate.</param>
+    /// <exception cref="ArgumentNullException">Thrown when the <paramref name="model"/> is null.</exception>
+    /// <exception cref="ArgumentException">Thrown when the validation of the model fails.</exception>
     public static void Validate(object? model)
     {
         if (model is null)
@@ -18,3 +28,4 @@ internal static class ModelValidator
         }
     }
 }
+
